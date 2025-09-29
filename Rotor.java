@@ -16,39 +16,46 @@ public class Rotor {
     }
     
     public boolean rotate(){
+        // creates a new array where the characters will be saved
         char[] newArr = new char[rotorChars.length];
 
+        // sets first char in array to the last char in the old array
+        // as per the "circular" motion of rotating
         newArr[0] = rotorChars[rotorChars.length-1];
+
+        // assigns every char a position following the newly added first char
         for (int i = 1; i < rotorChars.length; i++) {
             newArr[i] = rotorChars[i-1];
         }
+
+        // sets new array values to the rotor
         rotorChars = newArr;
         rotorValues = new String(rotorChars);
 
-        if (rotorChars[0] == startChar) {
-            return true;
-        } else {
-            return false;
-        }
+        // returns boolean for if rotor has made a full rotation
+        return (rotorChars[0] == startChar);
     }
     
 
     public int indexOf(char c){
+        // goes through every char to find the first instance of c
+        // returns the index at which c is located
         for (int i = 0; i < rotorValues.length(); i++) {
             if (charAt(i) == ('c')) {
                 return i;
             }
         }
-
         // if c is not found in the string
         return -1;
     }
 
     public char charAt(int idx){
-        if (idx >= rotorValues.length()) {
+        // returns the char at the index
+        if (idx < rotorValues.length()) {
             return rotorChars[idx];
         }
-        return '\0';
+        // returns empty char if index is out of bounds
+        return ' ';
     }
 }
     
