@@ -22,6 +22,29 @@ public class Enigma{
     public String decrypt(String message){        
         char[] msg = message.toCharArray(); //message in char array form
         String answer = ""; //answer that will be returned at end of function
+
+        // goes through for loop to decrypt each char of message
+        for (int i = 0; i < msg.length; i++) {
+            char val = msg[i]; //the char being decrypted on this pass
+            int idx; //index on rotor
+
+            // goes through backwars rotor logic to find the decrypted value
+            idx = rotors[2].indexOf(val);
+            val = rotors[1].charAt(idx);
+            idx = rotors[0].indexOf(val);
+            val = rotors[0].charAt(idx);
+            
+            // adds result value to answer
+            answer += val;
+
+            // rotate rotors
+            if (rotors[0].rotateBackwards()) {
+                if (rotors[1].rotateBackwards()) {
+                    rotors[2].rotateBackwards();
+                }
+            }
+        }
+        return answer; //final decrypted message
     }
 
 
@@ -32,7 +55,7 @@ public class Enigma{
 
         // goes through for loop to encrypt each char of message
         for (int i = 0; i < msg.length; i++) {
-            char val = msg[i]; //the value being converted
+            char val = msg[i]; //the char being converted during this pass
             int idx; //index on rotor
 
             // goes through rotor logic to find the encrypted value
