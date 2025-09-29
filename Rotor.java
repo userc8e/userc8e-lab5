@@ -9,9 +9,9 @@ public class Rotor {
         this.rotorValues = new String(v);
         this.startChar = c;
         
-        while(!this.rotate());
-
         rotorChars = rotorValues.toCharArray();
+
+        while(!this.rotate());
             
     }
     
@@ -63,7 +63,7 @@ public class Rotor {
         // goes through every char to find the first instance of c
         // returns the index at which c is located
         for (int i = 0; i < rotorValues.length(); i++) {
-            if (charAt(i) == ('c')) {
+            if (charAt(i) == (c)) {
                 return i;
             }
         }
