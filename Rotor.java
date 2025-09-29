@@ -3,16 +3,20 @@ public class Rotor {
     
     private String rotorValues;
     private char startChar;
-    private char[] rotorChars;
+    private char[] rotorChars; //added - string form of rotorValues
+    private int count; //added - counts how many times rotor has been rotated
         
     public Rotor(String v, char c){
         this.rotorValues = new String(v);
         this.startChar = c;
-        
+
         rotorChars = rotorValues.toCharArray();
 
-        while(!this.rotate());
-            
+        while (rotorChars[0] != startChar) {
+            this.rotate();
+        }
+          
+        count = 0;
     }
     
     public boolean rotate(){
@@ -32,8 +36,15 @@ public class Rotor {
         rotorChars = newArr;
         rotorValues = new String(rotorChars);
 
+        count++; //adds every time the rotor rotates
         // returns boolean for if rotor has made a full rotation
-        return (rotorChars[0] == startChar);
+        //return (rotorChars[0] == startChar);
+        if (count == rotorChars.length) {
+            count = 0; //resets
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -54,8 +65,15 @@ public class Rotor {
         rotorChars = newArr;
         rotorValues = new String(rotorChars);
 
+        count++; //adds every time the rotor rotates
         // returns boolean for if rotor has made a full rotation
-        return (rotorChars[0] == startChar);
+        //return (rotorChars[0] == startChar);
+        if (count == rotorChars.length) {
+            count = 0; //resets
+            return true;
+        } else {
+            return false;
+        }
     }
     
 
@@ -63,7 +81,7 @@ public class Rotor {
         // goes through every char to find the first instance of c
         // returns the index at which c is located
         for (int i = 0; i < rotorValues.length(); i++) {
-            if (charAt(i) == (c)) {
+            if (rotorChars[i] == (c)) {
                 return i;
             }
         }
