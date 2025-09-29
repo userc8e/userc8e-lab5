@@ -35,6 +35,28 @@ public class Rotor {
         // returns boolean for if rotor has made a full rotation
         return (rotorChars[0] == startChar);
     }
+
+
+    public boolean rotateBackwards() {
+        // creates a new array where the characters will be saved
+        char[] newArr = new char[rotorChars.length];
+
+        // sets last char in new array to the first char in old array
+        newArr[rotorChars.length-1] = rotorChars[0];
+
+        // assigns every char a position that is one step backwards
+        // does not include last index
+        for (int i = 0; i < rotorChars.length-1; i++) {
+            newArr[i] = rotorChars[i+1];
+        }
+
+        // sets new array values to the rotor
+        rotorChars = newArr;
+        rotorValues = new String(rotorChars);
+
+        // returns boolean for if rotor has made a full rotation
+        return (rotorChars[0] == startChar);
+    }
     
 
     public int indexOf(char c){
