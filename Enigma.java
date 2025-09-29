@@ -8,6 +8,7 @@ public class Enigma{
 
 
     private Rotor rotors[];
+    private String alphabet = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         
     public Enigma(int id1, int id2, int id3, String start){
 
@@ -32,7 +33,7 @@ public class Enigma{
             idx = rotors[2].indexOf(val);
             val = rotors[1].charAt(idx);
             idx = rotors[0].indexOf(val);
-            val = rotors[0].charAt(idx);
+            val = alphabet.charAt(idx);
             
             // adds result value to answer
             answer += val;
@@ -59,9 +60,9 @@ public class Enigma{
             int idx; //index on rotor
 
             // goes through rotor logic to find the encrypted value
-            idx = rotors[0].indexOf(val);
-            val = rotors[1].charAt(idx);
-            idx = rotors[2].indexOf(val);
+            idx = alphabet.indexOf(val);
+            val = rotors[0].charAt(idx);
+            idx = rotors[1].indexOf(val);
             val = rotors[2].charAt(idx);
 
             // adds this value to the answer
