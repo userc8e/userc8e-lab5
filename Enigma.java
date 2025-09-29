@@ -8,8 +8,8 @@ public class Enigma{
 
 
     private Rotor rotors[];
-    private String abc = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        
+    
+    
     public Enigma(int id1, int id2, int id3, String start){
 
         rotors = new Rotor[3];
@@ -32,9 +32,10 @@ public class Enigma{
             // goes through backwars rotor logic to find the decrypted value
             idx = rotors[2].indexOf(val);
             val = rotors[1].charAt(idx);
-            idx = rotors[0].indexOf(val);
-            val = abc.charAt(idx);
+            idx = rotors[2].indexOf(val);
+            val = rotors[0].charAt(idx);
             
+
             // adds result value to answer
             answer += val;
 
@@ -60,8 +61,8 @@ public class Enigma{
             int idx; //index on rotor
 
             // goes through rotor logic to find the encrypted value
-            idx = abc.indexOf(val);
-            val = rotors[0].charAt(idx);
+            idx = rotors[0].indexOf(val);
+            val = rotors[2].charAt(idx);
             idx = rotors[1].indexOf(val);
             val = rotors[2].charAt(idx);
 
@@ -78,14 +79,4 @@ public class Enigma{
         }
         return answer; //final encrypted message
     }
-
-    
-    private void rotate(){
-        if(rotors[0].rotate()){
-            if(rotors[1].rotate()){
-                rotors[2].rotate();
-            }
-        }
-    }
-    
 }
